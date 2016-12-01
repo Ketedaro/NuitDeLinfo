@@ -208,6 +208,7 @@ CREATE TABLE `Propose` (
 CREATE TABLE `Messages` (
   `idMess` int(11) NOT NULL,
   `contenu_mess` varchar(255) NOT NULL,
+    `idUser` int(11) NOT NULL,
   `recu` BOOLEAN DEFAULT NULL
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -237,6 +238,12 @@ ALTER TABLE `Propose`
   
     ALTER TABLE `Reponse`
   ADD PRIMARY KEY (`idRep`);
+  
+    
+  ALTER TABLE `Messages`
+ADD CONSTRAINT FK_Id_Messages_ID
+FOREIGN KEY (idUser)
+REFERENCES users(idUser);
   
   ALTER TABLE Reponse
 ADD CONSTRAINT FK_Id_Blague_reponse
