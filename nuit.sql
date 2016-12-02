@@ -55,9 +55,11 @@ INSERT INTO `conscerned_by_purchase` (`idUser`, `idPurchase`, `percents`) VALUES
 CREATE TABLE `endroit` (
   `id_endroit` int(11) NOT NULL,
   `Ville` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8 NOT NULL,
   `Description` varchar(255) CHARACTER SET utf8 NOT NULL,
   `lattitude` varchar(255) CHARACTER SET utf8 NOT NULL,
   `longitude` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `adresse` varchar(255) CHARACTER SET utf8 NOT NULL,
   `Code Postal` int(11) NOT NULL,
   `Type_Endroit` varchar(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
