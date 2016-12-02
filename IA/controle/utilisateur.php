@@ -35,3 +35,15 @@ function deconnexion(){
 }
 
 
+function inscAssos(){
+	$assos=  isset($_POST['association'])?($_POST['association']):'';
+	$mdp=  isset($_POST['mdp'])?($_POST['mdp']):'';
+	$mail=  isset($_POST['email'])?($_POST['email']):'';
+	if  (count($_POST)==0 || count($_POST)<3)) {
+			require ("vue/inscAssocFR.html") ;
+			}else {
+				require ("modele/utilisateurBD.php") ;
+				creerAssociation( $assos,$mail, $mdp);
+	}	
+	
+}

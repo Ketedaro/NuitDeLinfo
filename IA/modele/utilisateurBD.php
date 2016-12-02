@@ -25,18 +25,18 @@ function verif_ident($log, $password, &$profil) {
 }
 
 
-function creerUtilisateur($idUser, $firstNameUser, $lastNameUser, $suscribeDateUser, $email, $password){
+function creerUtilisateur( $firstNameUser, $lastNameUser, $email, $password){
 	require ("modele/connectBD.php") ; 
-	$insert = "INSERT INTO users(idUser, firstNameUser, lastNameUser, suscribeDateUser, email, password) VALUES ('%d', '%d', '%d', '%d', '%d', '%d')";
+	$insert = "INSERT INTO users(idUser, firstNameUser, lastNameUser, email, password) VALUES ('%d', '%d', '%d', '%d', '%d')";
 	$req = sprintf($insert, $idUser, $firstNameUser, $lastNameUser, $suscribeDateUser, $email, $password, 'Refugie');
 	$res = mysqli_query($link, $req)	
 		or die (utf8_encode("erreur de requête : ") . $req);
 
 }
 
-function creerAssociation($idUser, $firstNameUser, $suscribeDateUser, $email, $password){
+function creerAssociation( $firstNameUser,$email, $password){
 	require ("modele/connectBD.php") ; 
-		$insert = "INSERT INTO users(idUser, firstNameUser, suscribeDateUser, email, password) VALUES ('%d', '%d', '%d', '%d', '%d')";
+		$insert = "INSERT INTO users(idUser, firstNameUser, email, password) VALUES ( '%d', '%d', '%d', '%d')";
 	$req = sprintf($insert, $idUser, $firstNameUser, $suscribeDateUser, $email, $password, 'Association');
 	$res = mysqli_query($link, $req)	
 		or die (utf8_encode("erreur de requête : ") . $req);
