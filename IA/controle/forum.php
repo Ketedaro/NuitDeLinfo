@@ -1,38 +1,61 @@
 <?php
 
-function liker($user, $idLieu){
-	require("modele/formumBD.php");
+function liker($idLieu, $langue){
+	$user = $_SESSION['profil']['idUser'];
+	require("modele/forumBD.php");
 	if(aLikeBD($user, $idLieu)=="rien"){
 		likeBD($user, $idLieu, true);
 	}else if(aLikeBD($user, $idLieu)=="dislike"){
 		enleverLikeBD($user, $idLieu);
 		likeBD($user, $idLieu, true);
+	}else{
+		enleverLikeBD($user, $idLieu);
 	}
+	header("Location:index.php?controle=forum&action=afficher&param=$langue");
 }
 
-function disliker($user, $idLieu){
-	require("modele/formumBD.php");
+function disliker($idLieu, $langue){
+	$user = $_SESSION['profil']['idUser'];
+	require("modele/forumBD.php");
 	if(aLikeBD($user, $idLieu)=="rien"){
 		likeBD($user, $idLieu, false);
 	}else if(aLikeBD($user, $idLieu)=="like"){
 		enleverLikeBD($user, $idLieu);
 		likeBD($user, $idLieu, false);
+	}else{
+		enleverLikeBD($user, $idLieu);
+	}
+	header("Location:index.php?controle=forum&action=afficher&param=$langue");
+}
+
+function afficher($langue){
+	require("modele/forumBD.php");
+	$article = array();
+	$lieux = endroitsBD();
+	for($i=0; $i < count($lieux); ++$i){
+		$article[$i]['titre'] = $lieux[$i]['Type_Endroit'];
+		$article[$i]['descr'] = $lieux[$i]['Description'];
+		$article[$i]['like'] = nbLikeBD($lieux[$i]['id_endroit']);
+		$article[$i]['dislike'] = nbDislikeBD($lieux[$i]['id_endroit']);
+		$article[$i]['ville'] = $lieux[$i]['Ville'];
+		$article[$i]['CP'] = $lieux[$i]['Code Postal'];
+		$article[$i]['nom'] = $lieux[$i]['nom'];
+		$article[$i]['adresse'] = $lieux[$i]['adresse'];
+		$article[$i]['idLieu'] = $lieux[$i]['id_endroit'];
+	}
+	if($langue=="anglais"){
+		require("vue/forum_ang.html");
+	}else{
+		require("vue/forum_fr.html");
 	}
 }
 
-function afficher(){
-	require("modele/formumBD.php");
-	$articles = array();
-	$lieux = endroitsBD();
-	for($i=0; i < count($lieux); ++i){
-		$articles[$i]['titre'] = $lieux[$i]['Type_Endroit'];
-		$articles[$i]['descr'] = $lieux[$i]['Description'];
-		$articles[$i]['like'] = nbLikeBD($lieux[$i]['id_endroit']);
-		$articles[$i]['dislike'] = nbDislikeBD($lieux[$i]['id_endroit']);
-		$articles[$i]['ville'] = $lieux[$i]['Ville'];
-		$articles[$i]['Code Postal'] = $lieux[$i]['Code Postal'];
+function formulaire($langue){
+	if($langue=="anglais"){
+		require("vue/form_ang.html");
+	}else{
+		require("vue/form_fr.html");
 	}
-	require("vue/forum.php");
 }
 
 ?>

@@ -5,7 +5,7 @@ function aLikeBD($idUser,$idEndroit){
 		try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{
@@ -31,52 +31,27 @@ function aLikeBD($idUser,$idEndroit){
 }
 
 function likeBD($idUser,$idEndroit,$boolLike){
-
-	try
-	{
-		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
-	}
-	catch(Exception $e)
-	{
-		// En cas d'erreur, on affiche un message et on arrête tout
-	        die('Erreur : '.$e->getMessage());
-	}
-
-	$req = $bdd->prepare('INSERT INTO aime(idUser, idEndroit, aime) VALUES(:idUser, :idEndroit, :boolLike)');
-
-	$req->execute(array('idUser' => $idUser,'idEndroit' => $idEndroit,'boolLike' => $boolLike));
-
-
+	require ("modele/connectBD.php");
+	$insert = "INSERT INTO aime(idUser, idEndroit, aime) VALUES ('%d', '%d', '%b')";
+	$req = sprintf($insert, $idUser, $idEndroit, $boolLike);
+	$res = mysqli_query($link, $req)	
+		or die (utf8_encode("erreur de requête : ") . $req);
 }
 
-function enleverLikeBD($idUser,$idLieu){
 
-	try
-	{
-		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
-	}
-	catch(Exception $e)
-	{
-		// En cas d'erreur, on affiche un message et on arrête tout
-	        die('Erreur : '.$e->getMessage());
-	}
-
-	$req = $bdd->prepare('DELETE from aime WHERE idUser = :idUser , idEndroit = :idEndroit');
-	
-	$req->execute(array(
-
-			'idUser' => $idUser,
-			'idEndroit' => $idEndroit
-			));
+function enleverLikeBD($idUser,$idLieu) {
+	require ("modele/connectBD.php");
+	$delete = "DELETE FROM aime WHERE idUser='%d' and idEndroit='%d'";
+	$req = sprintf($delete, $idUser, $idLieu);
+	$res = mysqli_query($link, $req)	
+		or die (utf8_encode("erreur de requête : ") . $req);
 }
 
 function getEndroitBD($idLieu){
 	try
 		{
 			// On se connecte à MySQL
-			$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+			$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 		}
 		catch(Exception $e)
 		{
@@ -95,7 +70,7 @@ function nbLikeBD($idEndroit){
 	try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{
@@ -119,7 +94,7 @@ function nbDislikeBD($idEndroit){
 	try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{
@@ -143,7 +118,7 @@ function nbEndroitsBD(){
 		try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{
@@ -165,7 +140,7 @@ function endroitsBD(){
 		try
 	{
 		// On se connecte à MySQL
-		$bdd = new PDO('mysql:host=localhost;dbname=refugier;charset=utf8', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=refugies;charset=utf8', 'root', '');
 	}
 	catch(Exception $e)
 	{

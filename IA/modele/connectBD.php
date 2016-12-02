@@ -1,9 +1,9 @@
 <?php
 
 $hote="localhost";   		
-$login="philippe1";  		
-$pass=$login;	
-$bd="dut2_philippe1";
+$login="root";  		
+$pass="";	
+$bd="refugies";
 
 
 if (! isset($link)) {

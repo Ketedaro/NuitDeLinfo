@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- En-tête de la page -->
+        <meta charset="utf-8" />
+        <title>JhbNuitInfo</title>
+		<link rel="stylesheet" href="vue/style.css"/>
+    </head>
+
+    <body>
+		<div id="globale">
+			
+			<header style="background-image:url(vue/BanniereAnglaise.png)">			
+			</header>
+	
+	
+			<div style="clear:both"></div>
+				<nav>
+					<div id="menu">
+						<ul>
+							<li><a href="index.php?controle=accueil&action=afficher&param=anglais">Home</a> </li>
+							<li><a href="index.php?controle=bot&action=afficher&param=anglais">Bot</a></li>
+							<li><a href="index.php?controle=refund&action=afficher&param=anglais">Refund</a></li>
+							<li  id="active"><a href="index.php?controle=forum&action=afficher&param=anglais">Forum</a></li>
+							<a class="icone_fr" href="index.php?controle=forum&action=afficher&param=francais"></a>
+							<a class="icone_ang"></a>
+						</ul>				
+					</div> <!-- fin menu -->
+				</nav>
+			<div id="page">
+				<div id="section1">
+					<?php
+						for ($i = 0; $i < count($article); $i++) {
+							echo '<article>';
+								echo '<h1>Titre : ' . $article[$i]['titre'] . ' - ' . $article[$i]['nom'] . '</h1>';
+								echo '<p>Description : ' . $article[$i]['descr'] .'</p>';
+								echo '<p>Adresse : ' . $article[$i]['adresse'] .'</p>';
+								echo '<p>CP' . $article[$i]['CP'] .'</p>';
+								echo '<p>Ville : ' . $article[$i]['ville'] .'</p>';
+							echo '</article>';
+							echo '<a href="index.php?controle=forum&action=liker&param='. $article[$i]['idLieu'] .'&param2=anglais"><input type="button" value=" Like : ' . $article[$i]['like'] . '" /></a>';
+							echo '<a href="index.php?controle=forum&action=disliker&param='. $article[$i]['idLieu'] .'&param2=anglais"><input type="button" value=" Dislike : ' . $article[$i]['dislike'] . '" /></a>';
+						}
+					?>
+				</div>
+				<a href="index.php?controle=forum&action=formulaire&param=anglais"><input type="button" value="Formulaire" /></a>
+					
+				<div id="bot">
+					<!--mettre le bot ici-->
+				</div>
+			</div>
+		</div><!--fin globale-->
+    </body>
+</html>
