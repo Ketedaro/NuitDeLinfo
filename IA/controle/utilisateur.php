@@ -24,7 +24,7 @@ function ident () {
 					//On regarde si c'est un élève ou un prof
 					header("Location:index.php?controle=accueil&action=afficher&param=anglais");			
 				}
-	}	
+	}
 }
 
 //a compléter
@@ -44,6 +44,20 @@ function inscAssos(){
 			}else {
 				require ("modele/utilisateurBD.php") ;
 				creerAssociation( $assos,$mail, $mdp);
-	}	
-	
+	}
 }
+	
+	function inscRef(){
+	$fname=  isset($_POST['fname'])?($_POST['fname']):'';
+	$lname=  isset($_POST['lname'])?($_POST['lname']):'';
+	
+	$mdp=  isset($_POST['mdp'])?($_POST['mdp']):'';
+	$mail=  isset($_POST['email'])?($_POST['email']):'';
+	if  (count($_POST)==0 || count($_POST)<4)) {
+			require ("vue/inscRef.html") ;
+			}else {
+				require ("modele/utilisateurBD.php") ;
+				creerAssociation(  $fname, $lname, $mail, $mdp);
+	}
+}	
+	
