@@ -347,6 +347,15 @@ ALTER TABLE `purchases`
 --
 ALTER TABLE `refund`
   MODIFY `idRefund` int(11) NOT NULL AUTO_INCREMENT;
+  
+  ALTER TABLE `Messages`
+  MODIFY `idMess` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Blague`
+  MODIFY `idBlague` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Reponse`
+  MODIFY `idRep` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
