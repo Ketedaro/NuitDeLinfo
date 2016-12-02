@@ -55,6 +55,9 @@ INSERT INTO `conscerned_by_purchase` (`idUser`, `idPurchase`, `percents`) VALUES
 CREATE TABLE `endroit` (
   `id_endroit` int(11) NOT NULL,
   `Ville` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `Description` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `lattitude` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `longitude` varchar(255) CHARACTER SET utf8 NOT NULL,
   `Code Postal` int(11) NOT NULL,
   `Type_Endroit` varchar(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -205,6 +208,13 @@ CREATE TABLE `Propose` (
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `aime` (
+  `idUser` int(11) NOT NULL,
+  `IdEndroit` int(11) NOT NULL,
+  `aime` BOOLEAN DEFAULT NULL
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `Messages` (
   `idMess` int(11) NOT NULL,
   `contenu_mess` varchar(255) NOT NULL,
@@ -228,6 +238,9 @@ CREATE TABLE `Reponse` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE `Propose`
+  ADD PRIMARY KEY (`idUser`,`IdEndroit`);
+  
+  ALTER TABLE `aime`
   ADD PRIMARY KEY (`idUser`,`IdEndroit`);
 
   ALTER TABLE `Messages`
