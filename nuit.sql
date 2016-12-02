@@ -369,6 +369,8 @@ ALTER TABLE `refund`
   
     ALTER TABLE `Reponse`
   MODIFY `idRep` int(11) NOT NULL AUTO_INCREMENT;
+  ALTER TABLE `endroit`
+  MODIFY `id_endroit` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
