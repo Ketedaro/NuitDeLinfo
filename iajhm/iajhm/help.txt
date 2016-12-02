@@ -1,0 +1,7 @@
+I can handle these functions: </br>
+-Translations (ex: Translate chair in french) </br>
+-Time (ex: What time is it?) </br>
+-Places (ex : Where can I sleep ? / Where is Paris ?) </br>
+-Definitions (ex : What does apple mean) </br>
+</br>
+Feel free to ask me questions.
