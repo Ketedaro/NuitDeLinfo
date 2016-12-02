@@ -201,6 +201,7 @@ CREATE TABLE `users` (
   `lastNameUser` varchar(255) NOT NULL,
   `suscribeDateUser` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `type_user` enum('Refugie','Association') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
